@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
+  "console_title_template": "{{if .Root}} ⚡ {{end}}{{.UserName}} ➔ 📁{{.Folder}}",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "diamond",
+          "foreground": "p:session-fg",
+          "background": "p:session-bg",
+          "trailing_diamond": "\ue0b0",
+          "template": "{{if .Root}} \uf0e7 {{.UserName}} {{else}} {{.UserName}} {{end}}",
+          "properties": {
+            "display_host": false
+          }
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:path-body-fg",
+          "background": "p:path-body-bg",
+          "template": " {{ .Path }} ",
+          "properties": {
+            "folder_icon": "\uf115",
+            "folder_separator_icon": " \ue0b1 ",
+            "max_depth": 1,
+            "style": "agnoster_short"
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:git-fg",
+          // "background": "p:git",
+          "background_templates": [
+            "{{ if contains \"develop\" .HEAD }}p:git-develop{{ end }}",
+            "{{ if contains \"master\" .HEAD }}p:git-master{{ end }}",
+            "{{ if contains \"release\" .HEAD }}p:git-release{{ end }}",
+            "{{ if contains \"feature\" .HEAD }}p:git-feature{{ end }}",
+            "p:git"
+          ],
+          "template": " {{ .HEAD }} "
+        }
+      ]
+    }
+  ],
+  "palette": {
+    "git": "#95ffa4",
+    "git-develop": "#ff3535",
+    "git-feature": "#95ffa4",
+    "git-master": "#FF0000",
+    "git-release": "#ffb340",
+    "git-fg": "#193549",
+    "path-body-bg": "#61AFEF",
+    "path-body-fg": "#ffffff",
+    "path-leaf-bg": "#61AFEF",
+    "path-leaf-fg": "#ffffff",
+    "session-bg": "#C678DD",
+    "session-fg": "#ffffff"
+  }
+}
