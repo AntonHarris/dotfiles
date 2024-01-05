@@ -1,8 +1,17 @@
 # Some elements taken from: https://github.com/ChrisTitusTech/powershell-profile/blob/main/Microsoft.PowerShell_profile.ps1
 
 # Using Oh-my-posh and Terminal-Icons to make shell pretty
-oh-my-posh --init --shell pwsh --config 'C:\Users\fourm\Documents\PowerShell\antonharris.omp.json' | Invoke-Expression
-Import-Module -Name Terminal-Icons
+
+if ($Env:WT_SESSION) {
+    oh-my-posh --init --shell pwsh --config 'C:\Users\fourm\Documents\PowerShell\antonharris.omp.json' | Invoke-Expression
+    Import-Module -Name Terminal-Icons
+} elseif ($Env:MOBAEXTRACTONTHEFLY) {
+    # Maybe another Oh-my-posh file? The colours really not good with WT file in MobaXTerm
+    Import-Module -Name Terminal-Icons
+# } else {
+#     # Just an ordinary PowerShell session
+#     # Something else, maybe nothing ??
+}
 
 # Useful shortcuts for traversing directories
 function cd... { Set-Location ..\.. }
